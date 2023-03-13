@@ -19,7 +19,7 @@ public class MySecurityCongif {
             try {
                 authz
                     .requestMatchers("/").permitAll()
-                    .requestMatchers("/avengers/assemble").hasRole("CHAMPION")
+                    .requestMatchers("/avengers/assemble").hasAnyRole("CHAMPION", "DIRECTOR")
                     .requestMatchers("/secret-bases").hasRole("DIRECTOR")
                     .anyRequest().authenticated()
                     .and().formLogin()
@@ -44,16 +44,16 @@ public class MySecurityCongif {
 			.build();
 
         UserDetails champion = User
-                .withUsername("Steve")
-                .password(encoder.encode("motdepasse"))
-                .roles("CHAMPION")
-                .build();
+            .withUsername("Steve")
+            .password(encoder.encode("motdepasse"))
+            .roles("CHAMPION")
+            .build();
 
         UserDetails director = User
-        .withUsername("Nick")
-        .password(encoder.encode("flerken"))
-        .roles("DIRECTOR")
-        .build();
+            .withUsername("Nick")
+            .password(encoder.encode("flerken"))
+            .roles("DIRECTOR")
+            .build();
 
         return new InMemoryUserDetailsManager(user, champion, director);
     }

@@ -38,10 +38,10 @@ public class MySecurityCongif {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
         UserDetails user = User
-			.withUsername("user")
-			.password(encoder.encode("password"))
-			.roles("")
-			.build();
+	    .withUsername("user")
+	    .password(encoder.encode("password"))
+	    .roles("")
+	    .build();
 
         UserDetails champion = User
             .withUsername("Steve")
